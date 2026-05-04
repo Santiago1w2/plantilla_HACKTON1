@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tropel_signal")
 public class TropelSignal {
 
     @Id

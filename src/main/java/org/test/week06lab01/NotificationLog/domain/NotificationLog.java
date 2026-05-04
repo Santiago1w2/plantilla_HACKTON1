@@ -7,7 +7,6 @@ import org.test.week06lab01.tropelSignal.domain.TropelSignal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "notification_log")
 public class NotificationLog {
 
     @Id
