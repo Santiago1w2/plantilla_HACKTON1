@@ -1,3 +1,9 @@
+#Para poder crear un token de git hub y consumir apis de model entrar a qui
+
+https://github.com/settings/tokens
+
+
+
 # Week 06 Lab 01 — Autenticación y Autorización con JWT
 
 Lab del curso CS2031 (UTEC) que implementa autenticación stateless usando JSON Web Tokens (JWT) con Spring Security 6.
