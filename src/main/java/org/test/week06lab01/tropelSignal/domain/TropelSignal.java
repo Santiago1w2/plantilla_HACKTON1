@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.test.week06lab01.Tropel.Tropel;
 import org.test.week06lab01.guardian.domain.Guardian;
@@ -12,6 +15,9 @@ import org.test.week06lab01.guardian.domain.Guardian;
 import java.time.Instant;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class TropelSignal {
 
     @Id

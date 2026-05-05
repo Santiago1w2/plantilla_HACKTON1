@@ -16,6 +16,8 @@ import org.test.week06lab01.Tropel.tropelRepository.TropelRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.test.week06lab01.guardian.domain.Guardian;
+import org.test.week06lab01.sector.domain.Sector;
 
 @Service
 public class TropelService {

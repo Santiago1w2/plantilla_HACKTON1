@@ -1,7 +1,7 @@
-package org.comunidad.git_model.service;
+package org.test.week06lab01.model.service;
 
 
-import org.comunidad.git_model.dto.ChatResponse;
+import org.test.week06lab01.model.dto.ChatResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
