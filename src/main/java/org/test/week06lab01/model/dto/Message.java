@@ -1,4 +1,4 @@
-package org.comunidad.git_model.dto;
+package org.test.week06lab01.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
