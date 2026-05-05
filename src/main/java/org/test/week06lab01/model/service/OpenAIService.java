@@ -14,7 +14,7 @@ public class OpenAIService {
     @Value("${github.token}")
     private String API_KEY;
 
-    public String preguntarIA(String mensajeUsuario, String asunto) {
+    public String preguntarIA(String mensajeUsuario) {
 
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
@@ -34,7 +34,7 @@ public class OpenAIService {
              }
           ]
         }
-        """.formatted(asunto,mensajeUsuario);
+        """.formatted(mensajeUsuario);
 
         HttpEntity<String> request = new HttpEntity<>(body, headers);
 
