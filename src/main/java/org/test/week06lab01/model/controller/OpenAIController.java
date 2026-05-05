@@ -1,7 +1,7 @@
-package org.comunidad.git_model.controller;
+package org.test.week06lab01.model.controller;
 
-import org.comunidad.git_model.service.OpenAIService;
 import org.springframework.web.bind.annotation.*;
+import org.test.week06lab01.model.service.OpenAIService;
 
 @RestController
 @RequestMapping("/api/ia")

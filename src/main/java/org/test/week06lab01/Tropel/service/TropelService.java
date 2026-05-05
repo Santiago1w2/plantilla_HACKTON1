@@ -3,6 +3,8 @@ package org.test.week06lab01.Tropel.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.test.week06lab01.Tropel.Tropel;
+import org.test.week06lab01.guardian.domain.Guardian;
+import org.test.week06lab01.sector.domain.Sector;
 
 @Service
 public class TropelService {
