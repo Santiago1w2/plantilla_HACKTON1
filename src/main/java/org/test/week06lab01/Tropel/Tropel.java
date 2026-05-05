@@ -2,6 +2,8 @@ package org.test.week06lab01.Tropel;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.test.week06lab01.guardian.domain.Guardian;
 import org.test.week06lab01.sector.domain.Sector;
 
@@ -10,6 +12,8 @@ import java.time.Instant;
 import java.time.Instant;
 
 @Entity
+@Getter
+@Setter
 public class Tropel {
 
     @Id
@@ -64,3 +68,4 @@ public class Tropel {
     public void preUpdate() {
         this.updatedAt = Instant.now();
     }
+}

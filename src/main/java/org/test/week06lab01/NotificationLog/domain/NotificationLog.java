@@ -2,11 +2,17 @@ package org.test.week06lab01.NotificationLog.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.test.week06lab01.tropelSignal.domain.TropelSignal;
 
 import java.time.Instant;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class NotificationLog {
 
     @Id
