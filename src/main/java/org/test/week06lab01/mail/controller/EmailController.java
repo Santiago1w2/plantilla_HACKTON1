@@ -1,11 +1,11 @@
-package org.comunidad.git_model.controller;
+package org.test.week06lab01.mail.controller;
 
 
-import org.comunidad.git_model.service.EmailService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.test.week06lab01.mail.service.EmailService;
 
 @RestController
 @RequestMapping("/email")

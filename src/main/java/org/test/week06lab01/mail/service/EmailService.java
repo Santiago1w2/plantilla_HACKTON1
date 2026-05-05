@@ -1,4 +1,4 @@
-package org.comunidad.git_model.service;
+package org.test.week06lab01.mail.service;
 
 
 import org.springframework.mail.SimpleMailMessage;
