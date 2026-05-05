@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.*;
+import org.test.week06lab01.tropelSignal.domain.TropelSignal;
+
 import java.time.Instant;
 
 @Entity
