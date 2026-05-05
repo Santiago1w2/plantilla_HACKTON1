@@ -1,8 +1,21 @@
 package org.test.week06lab01.Tropel.service;
 
+import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.test.week06lab01.Tropel.DTO.PageResponse;
+import org.test.week06lab01.Tropel.Species;
 import org.test.week06lab01.Tropel.Tropel;
+import org.test.week06lab01.Tropel.VitalState;
+import org.test.week06lab01.Tropel.tropelRepository.TropelRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.test.week06lab01.guardian.domain.Guardian;
 import org.test.week06lab01.sector.domain.Sector;
 
@@ -10,47 +23,69 @@ import org.test.week06lab01.sector.domain.Sector;
 public class TropelService {
 
     private final TropelRepository tropelRepository;
-    private final SectorRepository sectorRepository;
-    private final GuardianRepository guardianRepository;
 
-    public TropelService(TropelRepository tropelRepository,
-                         SectorRepository sectorRepository,
-                         GuardianRepository guardianRepository) {
+    public TropelService(TropelRepository tropelRepository){
         this.tropelRepository = tropelRepository;
-        this.sectorRepository = sectorRepository;
-        this.guardianRepository = guardianRepository;
     }
 
-    @Transactional
-    public Tropel crearTropel(CreateTropelRequest request) {
-
-        // 1. Buscar Sector
-        Sector sector = sectorRepository.findById(request.getSectorId())
-                .orElseThrow(() -> new RuntimeException("Sector no encontrado"));
-
-        // 2. Buscar Guardian
-        Guardian guardian = guardianRepository.findById(request.getGuardianId())
-                .orElseThrow(() -> new RuntimeException("Guardian no encontrado"));
-
-        // 3. Validar capacidad
-        if (sector.getCurrentLoad() >= sector.getCapacity()) {
-            throw new RuntimeException("Sector lleno");
+    public Tropel save(Tropel tropel){
+        if (tropel != null) {
+            return tropelRepository.save(tropel);
+        } else {
+            throw new IllegalArgumentException("Tropel vacio");
         }
+    }
 
-        // 4. Crear Tropel (valores iniciales ya están en la entidad)
-        Tropel tropel = new Tropel();
-        tropel.setName(request.getName());
-        tropel.setSpecies(request.getSpecies());
-        tropel.setSector(sector);
-        tropel.setGuardian(guardian);
+    public PageResponse<Tropel> listar(Species species,
+                                       VitalState vitalState,
+                                       Long sectorId,
+                                       Long guardianId,
+                                       int page,
+                                       int size) {
 
-        // (vitalState, energyLevel, etc ya tienen valores por defecto)
+        if (page < 0) page = 0;
+        if (size <= 0) size = 10;
+        size = Math.min(size, 50);
 
-        // 5. Incrementar carga del sector
-        sector.setCurrentLoad(sector.getCurrentLoad() + 1);
-        sectorRepository.save(sector);
+        Specification<Tropel> spec = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
 
-        // 6. Guardar Tropel
-        return tropelRepository.save(tropel);
+            if (species != null) {
+                predicates.add(cb.equal(root.get("species"), species));
+            }
+
+            if (vitalState != null) {
+                predicates.add(cb.equal(root.get("vitalState"), vitalState));
+            }
+
+            if (sectorId != null) {
+                predicates.add(cb.equal(root.get("sector").get("id"), sectorId));
+            }
+
+            if (guardianId != null) {
+                predicates.add(cb.equal(root.get("guardian").get("id"), guardianId));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+
+        Page<Tropel> result = tropelRepository.findAll(
+                spec,
+                PageRequest.of(page, size, Sort.by("createdAt").descending())
+        );
+
+        return new PageResponse<>(
+                result.getContent(),
+                result.getTotalElements(),
+                result.getTotalPages(),
+                result.getNumber(),
+                result.getSize()
+        );
+    }
+
+
+    public Tropel findById(Long id) {
+        return tropelRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tropel no encontrado"));
     }
 }
