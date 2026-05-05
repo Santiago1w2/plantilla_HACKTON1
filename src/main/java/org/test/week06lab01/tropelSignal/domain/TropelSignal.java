@@ -6,6 +6,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.test.week06lab01.Tropel.Tropel;
+import org.test.week06lab01.guardian.domain.Guardian;
 
 import java.time.Instant;
 

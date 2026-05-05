@@ -2,6 +2,9 @@ package org.test.week06lab01.Tropel;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.test.week06lab01.guardian.domain.Guardian;
+import org.test.week06lab01.sector.domain.Sector;
+
 import java.time.Instant;
 
 import java.time.Instant;
