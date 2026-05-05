@@ -67,5 +67,4 @@ public class Tropel {
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = Instant.now();
-    }
-}
+    }}
