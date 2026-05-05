@@ -1,7 +1,6 @@
 package org.test.week06lab01.tropelSignal.service;
-
 import org.test.week06lab01.CareResponse.CareResponse;
-import org.test.week06lab01.CareResponse.repository.CareResponseRepository;
+import org.test.week06lab01.CareResponse.repository.careResponseRepository;
 import org.test.week06lab01.model.service.OpenAIService;
 import org.test.week06lab01.exeception.BadRequestException;
 import org.test.week06lab01.exeception.ResourceNotFoundException;
@@ -45,7 +44,7 @@ public class TropelSignalService {
     private final TropelRepository tropelRepository;
     private final GuardianRepository guardianRepository;
     private final SectorRepository sectorRepository;
-    private final CareResponseRepository careResponseRepository;
+    private final careResponseRepository careResponseRepository;
     private final OpenAIService openAIService;
     private final ApplicationEventPublisher eventPublisher;
 
@@ -53,7 +52,7 @@ public class TropelSignalService {
                                TropelRepository tropelRepository,
                                GuardianRepository guardianRepository,
                                SectorRepository sectorRepository,
-                               CareResponseRepository careResponseRepository,
+                               careResponseRepository careResponseRepository,
                                OpenAIService openAIService,
                                ApplicationEventPublisher eventPublisher) {
         this.signalRepository = signalRepository;
